@@ -1,7 +1,6 @@
-"use client";
-
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { NavLink } from "react-router";
 
 interface NavLink {
   label: string;
@@ -9,11 +8,10 @@ interface NavLink {
 }
 
 const navLinks: NavLink[] = [
-  { label: "Inicio", href: "#hero" },
-  { label: "Tech Stack", href: "#tech" },
-  { label: "Proyectos", href: "#projects" },
-  { label: "Sobre mí", href: "#about" },
-  { label: "Contacto", href: "#contact" },
+  { label: "Inicio", href: "/" },
+  { label: "Proyectos", href: "/projects" },
+  { label: "Sobre mí", href: "/about" },
+  { label: "Contacto", href: "/contact" },
 ];
 
 export function Navbar() {
@@ -23,23 +21,23 @@ export function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="max-w-6xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <a
-            href="#hero"
+          <NavLink
+            to="#hero"
             className="text-xl font-bold tracking-tight text-foreground hover:text-primary transition-colors"
           >
             {"<Dev />"}
-          </a>
+          </NavLink>
 
           {/* Desktop Navigation */}
           <ul className="hidden md:flex items-center gap-8">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
+                <NavLink
+                  to={link.href}
                   className="text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   {link.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
@@ -59,13 +57,13 @@ export function Navbar() {
           <ul className="md:hidden mt-4 pb-4 flex flex-col gap-4">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
-                  href={link.href}
+                <NavLink
+                  to={link.href}
                   onClick={() => setIsOpen(false)}
                   className="block text-sm text-muted-foreground hover:text-primary transition-colors"
                 >
                   {link.label}
-                </a>
+                </NavLink>
               </li>
             ))}
           </ul>
