@@ -2,7 +2,7 @@ import type { Project } from "@/portfolio/types/portfolio.types";
 
 export const personalInfo = {
   name: "Javier",
-  fullName: "Javier González",
+  fullName: "Javier García",
   role: "React Developer",
   subRole: "TypeScript & Testing Enthusiast",
   email: "devjaviergarcia@gmail.com",
