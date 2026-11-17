@@ -1,79 +1,119 @@
+import { BookOpen, CheckCircle2, FileText, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router";
+import { personalInfo } from "@/data/portfolioData";
+import { Badge } from "@/components/ui/badge";
+
 export function About() {
   return (
-    <section id="about" className="py-24 px-6">
+    <section id="about" className="py-24 px-6 relative">
       <div className="max-w-6xl mx-auto">
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Left Column - Title */}
-          <div>
-            <p className="text-primary font-medium tracking-wide uppercase text-sm mb-2">
-              Sobre mí
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-balance">
-              Mi Trayectoria
-            </h2>
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          {/* Left Column - Intro & Quick Stats */}
+          <div className="lg:col-span-5 space-y-6">
+            <div>
+              <p className="text-primary font-medium tracking-wide uppercase text-sm mb-2">
+                Sobre mí
+              </p>
+              <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-balance">
+                Mi Trayectoria & Filosofía
+              </h2>
+            </div>
+
+            {/* Stats Cards */}
+            <div className="grid grid-cols-2 gap-3 pt-2">
+              {personalInfo.stats.map((stat) => (
+                <div
+                  key={stat.label}
+                  className="bg-card border border-border rounded-xl p-4 hover:border-primary/40 transition-colors"
+                >
+                  <div className="text-xs text-muted-foreground uppercase tracking-wider">
+                    {stat.label}
+                  </div>
+                  <div className="text-base sm:text-lg font-bold text-foreground mt-1">
+                    {stat.value}
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            {/* Quick Actions */}
+            <div className="pt-2 flex flex-wrap gap-3">
+              <Button asChild className="gap-2">
+                <Link to="/contact">
+                  <Send className="size-4" />
+                  Hablemos de tu proyecto
+                </Link>
+              </Button>
+              <Button asChild variant="outline" className="gap-2">
+                <a
+                  href="#projects"
+                  className="cursor-pointer"
+                >
+                  <FileText className="size-4" />
+                  Ver mis trabajos
+                </a>
+              </Button>
+            </div>
           </div>
 
-          {/* Right Column - Content */}
-          <div className="space-y-6">
-            <p className="text-muted-foreground leading-relaxed">
-              Soy un desarrollador apasionado por crear interfaces accesibles y
-              experiencias digitales de alta calidad. Mi trabajo se encuentra en
-              la intersección del diseño y el desarrollo, creando experiencias
-              que no solo lucen bien sino que están meticulosamente construidas
-              para el rendimiento y la usabilidad.
-            </p>
+          {/* Right Column - Detailed Story & Timeline */}
+          <div className="lg:col-span-7 space-y-8">
+            <div className="space-y-4 text-muted-foreground leading-relaxed text-base">
+              {personalInfo.bio.detailed.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
+            </div>
 
-            <p className="text-muted-foreground leading-relaxed">
-              Actualmente soy{" "}
-              <span className="text-foreground font-medium">
-                estudiante avanzado del curso MERN
-              </span>{" "}
-              de{" "}
-              <span className="text-primary font-medium">Fernando Herrera</span>
-              , donde he profundizado en el desarrollo full-stack con MongoDB,
-              Express, React y Node.js.
-            </p>
-
-            <p className="text-muted-foreground leading-relaxed">
-              Mi enfoque principal está en{" "}
-              <span className="text-foreground font-medium">React</span> y{" "}
-              <span className="text-foreground font-medium">TypeScript</span>,
-              con un fuerte énfasis en las prácticas de testing utilizando{" "}
-              <span className="text-foreground font-medium">Jest</span> y{" "}
-              <span className="text-foreground font-medium">Vitest</span>. Creo
-              firmemente que el código bien testeado es código de calidad.
-            </p>
-
-            <div className="pt-4 border-t border-border">
-              <h3 className="font-semibold text-foreground mb-4">
-                Lo que me define:
+            {/* Trait list */}
+            <div className="pt-6 border-t border-border">
+              <h3 className="text-lg font-semibold text-foreground mb-4 flex items-center gap-2">
+                <CheckCircle2 className="size-5 text-primary" />
+                Lo que me define como desarrollador:
               </h3>
-              <ul className="space-y-3">
-                <li className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    Pasión por el código limpio y las buenas prácticas
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    Enfoque en testing y calidad del software
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    Aprendizaje continuo y mejora constante
-                  </span>
-                </li>
-                <li className="flex items-start gap-3">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
-                  <span className="text-muted-foreground">
-                    Colaboración y trabajo en equipo
-                  </span>
-                </li>
+              <ul className="grid sm:grid-cols-2 gap-3">
+                {personalInfo.traits.map((trait, index) => (
+                  <li
+                    key={index}
+                    className="flex items-start gap-2.5 text-sm text-muted-foreground bg-secondary/30 p-3 rounded-lg border border-border/50"
+                  >
+                    <span className="size-1.5 rounded-full bg-primary mt-2 flex-shrink-0" />
+                    <span>{trait}</span>
+                  </li>
+                ))}
               </ul>
+            </div>
+
+            {/* Milestones Timeline */}
+            <div className="pt-6 border-t border-border">
+              <h3 className="text-lg font-semibold text-foreground mb-6 flex items-center gap-2">
+                <BookOpen className="size-5 text-primary" />
+                Hitos & Aprendizaje
+              </h3>
+
+              <div className="space-y-6 relative before:absolute before:inset-0 before:left-3.5 before:w-0.5 before:bg-border">
+                {personalInfo.milestones.map((milestone, idx) => (
+                  <div key={idx} className="relative flex items-start gap-4 pl-8 group">
+                    <div className="absolute left-2.5 top-1.5 -translate-x-1/2 size-3 rounded-full bg-primary border-4 border-background group-hover:scale-125 transition-transform" />
+                    <div>
+                      <div className="flex flex-wrap items-center gap-2 mb-1">
+                        <span className="text-xs font-semibold text-primary font-mono">
+                          {milestone.period}
+                        </span>
+                        <Badge variant="secondary" className="text-[10px] py-0 px-2">
+                          {milestone.badge}
+                        </Badge>
+                      </div>
+                      <h4 className="font-semibold text-foreground text-base">
+                        {milestone.title}
+                      </h4>
+                      <p className="text-sm text-muted-foreground mt-1 leading-relaxed">
+                        {milestone.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>

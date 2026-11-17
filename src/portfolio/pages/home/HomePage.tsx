@@ -1,15 +1,11 @@
-
-import { About } from '@/portfolio/components/About';
-
-import { Hero } from '@/portfolio/components/Hero';
-import { Projects } from '@/portfolio/components/Proyects';
-import { TechStack } from '@/portfolio/components/TechStack';
-
-// ... otros componentes
+import { Hero } from "@/portfolio/components/Hero";
+import { TechStack } from "@/portfolio/components/TechStack";
+import { Projects } from "@/portfolio/components/Projects";
+import { About } from "@/portfolio/components/About";
 
 export const HomePage = () => {
   return (
-    <div className="min-h-screen  text-white">
+    <div className="min-h-screen text-foreground">
       <Hero />
       <TechStack />
       <Projects />

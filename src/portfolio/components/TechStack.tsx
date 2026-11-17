@@ -1,7 +1,12 @@
+import React, { useState } from "react";
+import { Badge } from "@/components/ui/badge";
+import { cn } from "@/lib/utils";
+
 interface TechItem {
   name: string;
   icon: React.ReactNode;
-  category: string;
+  category: "Frontend" | "Lenguaje" | "Testing" | "Herramientas" | "Estilos";
+  description: string;
 }
 
 function ReactIcon() {
@@ -61,44 +66,122 @@ function TailwindIcon() {
 }
 
 const technologies: TechItem[] = [
-  { name: "React", icon: <ReactIcon />, category: "Frontend" },
-  { name: "TypeScript", icon: <TypeScriptIcon />, category: "Lenguaje" },
-  { name: "JavaScript", icon: <JavaScriptIcon />, category: "Lenguaje" },
-  { name: "Jest", icon: <JestIcon />, category: "Testing" },
-  { name: "Vitest", icon: <VitestIcon />, category: "Testing" },
-  { name: "Git", icon: <GitIcon />, category: "Herramientas" },
-  { name: "Tailwind CSS", icon: <TailwindIcon />, category: "Estilos" },
+  {
+    name: "React",
+    icon: <ReactIcon />,
+    category: "Frontend",
+    description: "React 19, Custom Hooks, Context API y Server Actions",
+  },
+  {
+    name: "TypeScript",
+    icon: <TypeScriptIcon />,
+    category: "Lenguaje",
+    description: "Tipado estricto, interfaces, generics y type safety",
+  },
+  {
+    name: "JavaScript",
+    icon: <JavaScriptIcon />,
+    category: "Lenguaje",
+    description: "ES6+, programación asíncrona, promesas y closures",
+  },
+  {
+    name: "Jest",
+    icon: <JestIcon />,
+    category: "Testing",
+    description: "Unit testing, mocks, snapshots y cobertura de código",
+  },
+  {
+    name: "Vitest",
+    icon: <VitestIcon />,
+    category: "Testing",
+    description: "Testing rápido e integrado con Vite y RTL",
+  },
+  {
+    name: "Git",
+    icon: <GitIcon />,
+    category: "Herramientas",
+    description: "Control de versiones, branching, pull requests y CI/CD",
+  },
+  {
+    name: "Tailwind CSS",
+    icon: <TailwindIcon />,
+    category: "Estilos",
+    description: "Diseño responsivo utility-first, dark mode y tokens",
+  },
 ];
 
+const categories = ["Todas", "Frontend", "Lenguaje", "Testing", "Herramientas"] as const;
+
 export function TechStack() {
+  const [selectedCategory, setSelectedCategory] = useState<string>("Todas");
+
+  const filteredTechnologies =
+    selectedCategory === "Todas"
+      ? technologies
+      : technologies.filter(
+          (t) =>
+            t.category === selectedCategory ||
+            (selectedCategory === "Frontend" && t.category === "Estilos")
+        );
+
   return (
-    <section id="tech" className="py-24 px-6">
+    <section id="tech" className="py-24 px-6 relative">
       <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          <p className="text-primary font-medium tracking-wide uppercase text-sm mb-2">
-            Tecnologías
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-balance">
-            Mi Stack Técnico
-          </h2>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+          <div>
+            <p className="text-primary font-medium tracking-wide uppercase text-sm mb-2">
+              Tecnologías
+            </p>
+            <h2 className="text-3xl sm:text-4xl font-bold text-foreground text-balance">
+              Mi Stack Técnico
+            </h2>
+            <p className="text-muted-foreground text-sm mt-2 max-w-lg">
+              Herramientas y tecnologías con las que construyo soluciones escalables, testeables y de alto rendimiento.
+            </p>
+          </div>
+
+          {/* Category Filter Chips */}
+          <div className="flex flex-wrap gap-2">
+            {categories.map((cat) => (
+              <button
+                key={cat}
+                onClick={() => setSelectedCategory(cat)}
+                className={cn(
+                  "px-3 py-1.5 rounded-full text-xs font-medium transition-all cursor-pointer",
+                  selectedCategory === cat
+                    ? "bg-primary text-primary-foreground shadow-md shadow-primary/20"
+                    : "bg-secondary/70 text-muted-foreground hover:text-foreground hover:bg-secondary"
+                )}
+              >
+                {cat}
+              </button>
+            ))}
+          </div>
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-6">
-          {technologies.map((tech) => (
+        {/* Tech Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
+          {filteredTechnologies.map((tech) => (
             <div
               key={tech.name}
-              className="group relative bg-card border border-border rounded-lg p-6 hover:border-primary/50 transition-all duration-300"
+              className="group relative bg-card border border-border rounded-xl p-5 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/5 transition-all duration-300 flex flex-col justify-between"
             >
-              <div className="flex flex-col items-center text-center gap-4">
-                <div className="text-muted-foreground group-hover:text-primary transition-colors duration-300">
+              <div className="flex items-start justify-between mb-4">
+                <div className="text-muted-foreground group-hover:text-primary group-hover:scale-110 transition-all duration-300">
                   {tech.icon}
                 </div>
-                <div>
-                  <h3 className="font-semibold text-foreground">{tech.name}</h3>
-                  <p className="text-xs text-muted-foreground mt-1">
-                    {tech.category}
-                  </p>
-                </div>
+                <Badge variant="outline" className="text-[11px] font-normal">
+                  {tech.category}
+                </Badge>
+              </div>
+
+              <div>
+                <h3 className="font-semibold text-foreground text-base group-hover:text-primary transition-colors">
+                  {tech.name}
+                </h3>
+                <p className="text-xs text-muted-foreground mt-1 leading-relaxed">
+                  {tech.description}
+                </p>
               </div>
             </div>
           ))}
