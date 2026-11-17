@@ -15,7 +15,7 @@ export const personalInfo = {
     short: "Desarrollo interfaces accesibles, pixel-perfect y experiencias digitales que combinan diseño cuidado con ingeniería robusta.",
     detailed: [
       "Soy un desarrollador apasionado por crear interfaces accesibles y experiencias digitales de alta calidad. Mi trabajo se encuentra en la intersección del diseño y el desarrollo, creando aplicaciones que no solo lucen bien sino que están meticulosamente construidas para el rendimiento, la accesibilidad y la usabilidad.",
-      "Estudiante avanzado del curso MERN de Fernando Herrera, profundizando en arquitecturas escalables, gestión de estado y full-stack con React, TypeScript, Node.js y bases de datos modernas.",
+      "Estudiante avanzado del curso React de Fernando Herrera, profundizando en arquitecturas escalables, gestión de estado y full-stack con React, TypeScript, Node.js y bases de datos modernas.",
       "Mi especialidad es el ecosistema React moderno (React 19, hooks, router, queries) con TypeScript estricto y un fuerte enfoque en calidad mediante testing unitario y de integración con Vitest y Jest.",
     ],
   },
@@ -34,7 +34,7 @@ export const personalInfo = {
   milestones: [
     {
       period: "2024 - Presente",
-      title: "Desarrollo Frontend & MERN Avanzado",
+      title: "Desarrollo Frontend & React Avanzado",
       description: "Especialización intensiva en React, TypeScript, Tailwind CSS, TanStack Query y backend Node/Express con Fernando Herrera.",
       badge: "Formación Activa",
     },

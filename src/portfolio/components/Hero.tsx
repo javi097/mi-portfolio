@@ -171,7 +171,7 @@ export function Hero() {
                 </div>
                 <div className="pl-4">
                   <span className="text-foreground/80">course:</span>{" "}
-                  <span className="text-sky-400">"MERN Fernando Herrera"</span>,
+                  <span className="text-sky-400">"React Fernando Herrera"</span>,
                 </div>
                 <div className="pl-4">
                   <span className="text-foreground/80">status:</span>{" "}
