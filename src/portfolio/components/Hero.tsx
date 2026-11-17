@@ -47,7 +47,7 @@ export function Hero() {
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-foreground tracking-tight">
                 {personalInfo.name}{" "}
                 <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-emerald-400">
-                  González
+                  García
                 </span>
               </h1>
               <p className="text-xl sm:text-2xl text-foreground/90 font-semibold pt-1">
